@@ -1,0 +1,1179 @@
+```html
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Private Memories ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Tahoma,sans-serif;
+    background:#050505;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* =====================================
+   PASSWORD SCREEN
+===================================== */
+
+#lockScreen{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+    padding:25px;
+
+    background:
+    radial-gradient(circle at center,#4d0719 0%,#16050a 45%,#000 100%);
+}
+
+.lockBox{
+    width:100%;
+    max-width:430px;
+
+    padding:40px 25px;
+
+    background:rgba(10,10,10,.88);
+
+    border:1px solid #4b1420;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 0 30px rgba(255,23,68,.25),
+    0 0 80px rgba(255,23,68,.08);
+
+    animation:fadeIn 1.5s ease;
+}
+
+.lockIcon{
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.lockTitle{
+    font-size:30px;
+    margin-bottom:10px;
+
+    text-shadow:
+    0 0 15px #ff1744;
+}
+
+.lockText{
+    color:#aaa;
+    line-height:1.8;
+    margin-bottom:25px;
+}
+
+#password{
+    width:100%;
+
+    padding:14px 18px;
+
+    border:1px solid #4b1420;
+
+    border-radius:30px;
+
+    background:#111;
+
+    color:white;
+
+    outline:none;
+
+    text-align:center;
+
+    font-size:16px;
+}
+
+#password:focus{
+    border-color:#ff1744;
+
+    box-shadow:
+    0 0 15px rgba(255,23,68,.35);
+}
+
+.unlockBtn{
+    width:100%;
+
+    margin-top:15px;
+
+    padding:14px;
+
+    border:0;
+
+    border-radius:30px;
+
+    background:#ff1744;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 0 25px rgba(255,23,68,.5);
+}
+
+.unlockBtn:hover{
+    background:#e60032;
+}
+
+#error{
+    display:none;
+
+    color:#ff5575;
+
+    margin-top:15px;
+
+    font-size:14px;
+}
+
+.lockFooter{
+    margin-top:25px;
+
+    color:#666;
+
+    font-size:13px;
+}
+
+/* =====================================
+   INTRO
+===================================== */
+
+#intro{
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:25px;
+
+    background:
+    radial-gradient(circle,#4d0719 0%,#17050a 45%,#000 100%);
+}
+
+.intro-box{
+    width:100%;
+    max-width:650px;
+
+    animation:fadeIn 1.8s ease;
+}
+
+.profile{
+    width:190px;
+    height:190px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:4px solid #ff1744;
+
+    box-shadow:
+    0 0 25px #ff1744,
+    0 0 70px rgba(255,23,68,.45);
+
+    margin-bottom:25px;
+}
+
+.small{
+    color:#ccc;
+
+    letter-spacing:6px;
+
+    font-size:15px;
+}
+
+.logo{
+    font-size:55px;
+
+    font-weight:bold;
+
+    margin:12px 0;
+
+    text-shadow:
+    0 0 15px #ff1744,
+    0 0 35px #ff1744;
+}
+
+.heart-circle{
+    width:70px;
+    height:70px;
+
+    border:2px solid #ff1744;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin:20px auto;
+
+    color:#ff1744;
+
+    font-size:27px;
+
+    animation:pulse 1.5s infinite;
+}
+
+.intro-text{
+    color:#ddd;
+
+    font-size:19px;
+
+    line-height:1.9;
+}
+
+.enter{
+    margin-top:25px;
+
+    padding:14px 30px;
+
+    border:1px solid #ff1744;
+
+    border-radius:30px;
+
+    background:#ff1744;
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 0 25px rgba(255,23,68,.6);
+}
+
+/* =====================================
+   NAVIGATION
+===================================== */
+
+nav{
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+    text-align:center;
+
+    padding:16px 8px;
+
+    background:rgba(0,0,0,.94);
+
+    border-bottom:1px solid #321019;
+
+    direction:ltr;
+}
+
+nav a{
+    color:#ddd;
+
+    text-decoration:none;
+
+    margin:0 10px;
+
+    font-size:14px;
+
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#ff1744;
+}
+
+/* =====================================
+   SECTIONS
+===================================== */
+
+section{
+    width:92%;
+
+    max-width:1000px;
+
+    margin:auto;
+
+    padding:75px 0;
+}
+
+.title{
+    text-align:center;
+
+    font-size:38px;
+
+    margin-bottom:12px;
+}
+
+.subtitle{
+    text-align:center;
+
+    color:#999;
+
+    margin-bottom:35px;
+}
+
+.box{
+    background:
+    linear-gradient(145deg,#1b070d,#0c0c0c);
+
+    border:1px solid #40121d;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    line-height:2;
+
+    color:#ddd;
+
+    text-align:center;
+}
+
+/* =====================================
+   PHOTOS
+===================================== */
+
+.gallery{
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(210px,1fr));
+
+    gap:20px;
+}
+
+.photo{
+    background:#101010;
+
+    border:1px solid #292929;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    transition:.3s;
+}
+
+.photo:hover{
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 0 25px rgba(255,23,68,.3);
+}
+
+.photo img{
+    width:100%;
+
+    height:300px;
+
+    object-fit:cover;
+
+    display:block;
+
+    background:#151515;
+}
+
+.caption{
+    text-align:center;
+
+    padding:13px;
+
+    color:#ccc;
+}
+
+/* =====================================
+   VIDEOS
+===================================== */
+
+.videos{
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:20px;
+}
+
+.video{
+    background:#101010;
+
+    padding:12px;
+
+    border:1px solid #292929;
+
+    border-radius:18px;
+}
+
+.video video{
+    width:100%;
+
+    border-radius:12px;
+
+    display:block;
+
+    background:#000;
+}
+
+/* =====================================
+   LETTER
+===================================== */
+
+.letter{
+    background:
+    linear-gradient(145deg,#1a070d,#090909);
+
+    border:1px solid #42131f;
+
+    border-radius:22px;
+
+    padding:40px;
+
+    line-height:2.2;
+
+    font-size:19px;
+
+    text-align:right;
+}
+
+.signature{
+    text-align:center;
+
+    color:#ff5575;
+
+    margin-top:25px;
+
+    font-weight:bold;
+}
+
+/* =====================================
+   FINAL LOVE
+===================================== */
+
+.love-final{
+    text-align:center;
+
+    padding:90px 20px;
+
+    background:
+    radial-gradient(circle,#360812,#050505 65%);
+}
+
+.love-final h2{
+    color:#ff1744;
+
+    font-size:34px;
+
+    margin-bottom:30px;
+}
+
+.ilove{
+    font-size:27px;
+
+    font-weight:bold;
+
+    margin:15px;
+
+    color:white;
+
+    direction:ltr;
+
+    text-shadow:
+    0 0 12px #ff1744,
+    0 0 25px rgba(255,23,68,.5);
+}
+
+/* =====================================
+   FOOTER
+===================================== */
+
+footer{
+    text-align:center;
+
+    padding:40px 20px;
+
+    border-top:1px solid #222;
+
+    color:#777;
+}
+
+/* =====================================
+   FLOATING HEARTS
+===================================== */
+
+.floating{
+    position:fixed;
+
+    bottom:-30px;
+
+    color:#ff1744;
+
+    pointer-events:none;
+
+    z-index:200;
+
+    animation:up 6s linear forwards;
+}
+
+/* =====================================
+   ANIMATIONS
+===================================== */
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes pulse{
+
+    50%{
+        transform:scale(1.12);
+
+        box-shadow:
+        0 0 40px #ff1744;
+    }
+
+}
+
+@keyframes up{
+
+    from{
+        transform:translateY(0);
+        opacity:.7;
+    }
+
+    to{
+        transform:translateY(-110vh);
+        opacity:0;
+    }
+
+}
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media(max-width:600px){
+
+    .profile{
+        width:150px;
+        height:150px;
+    }
+
+    .logo{
+        font-size:40px;
+    }
+
+    .small{
+        font-size:12px;
+    }
+
+    .title{
+        font-size:30px;
+    }
+
+    .letter{
+        padding:25px;
+
+        font-size:17px;
+    }
+
+    .ilove{
+        font-size:22px;
+    }
+
+    nav{
+        overflow-x:auto;
+
+        white-space:nowrap;
+    }
+}
+</style>
+</head>
+
+<body>
+
+
+<!-- =================================================
+     PASSWORD LOCK
+================================================= -->
+
+<div id="lockScreen">
+
+    <div class="lockBox">
+
+        <div class="lockIcon">
+            🔐
+        </div>
+
+        <h1 class="lockTitle">
+            Private Memories ❤️
+        </h1>
+
+        <p class="lockText">
+
+            یہ ایک private جگہ ہے۔<br>
+            Website کھولنے کے لیے password درج کریں۔
+
+        </p>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter Password"
+            autocomplete="off"
+        >
+
+        <button
+            class="unlockBtn"
+            onclick="unlockWebsite()">
+
+            🔓 Unlock ❤️
+
+        </button>
+
+        <div id="error">
+            غلط password ہے، دوبارہ کوشش کریں۔
+        </div>
+
+        <div class="lockFooter">
+            Made with ❤️ by Mudassar
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     INTRO
+================================================= -->
+
+<div id="intro" style="display:none">
+
+    <div class="intro-box">
+
+        <img
+            src="photo1.jpg"
+            class="profile"
+            alt="Waresha Photo"
+        >
+
+        <div class="small">
+            WELCOME TO
+        </div>
+
+        <div class="logo">
+            WAREESHA ❤️
+        </div>
+
+        <div class="heart-circle">
+            W
+        </div>
+
+        <div class="intro-text">
+
+            ایک خاص شخص کے نام<br>
+            ایک چھوٹی سی دل کی بات ❤️
+
+        </div>
+
+        <button
+            class="enter"
+            onclick="enterSite()">
+
+            ہماری یادوں میں داخل ہوں ❤️
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     MAIN WEBSITE
+================================================= -->
+
+<div id="website" style="display:none">
+
+
+<nav>
+
+    <a href="#home">Home</a>
+
+    <a href="#story">Our Story</a>
+
+    <a href="#photos">Photos</a>
+
+    <a href="#videos">Videos</a>
+
+    <a href="#letter">Letter</a>
+
+</nav>
+
+
+<!-- HOME -->
+
+<section id="home">
+
+    <h1 class="title">
+        ہماری یادیں ❤️
+    </h1>
+
+    <p class="subtitle">
+        کچھ لمحے ہمیشہ خاص رہتے ہیں
+    </p>
+
+    <div class="box">
+
+        <p>
+
+            کچھ یادیں وقت کے ساتھ پرانی نہیں ہوتیں،
+            بلکہ دل کے اور قریب ہوتی جاتی ہیں۔
+
+            <br><br>
+
+            یہ چھوٹی سی ویب سائٹ انہی خوبصورت
+            احساسات اور یادوں کے نام ہے۔ ❤️
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- STORY -->
+
+<section id="story">
+
+    <h2 class="title">
+        Our Story ❤️
+    </h2>
+
+    <p class="subtitle">
+        ایک احساس جو دل میں رہ گیا
+    </p>
+
+    <div class="box">
+
+        <p>
+
+            کبھی کبھی زندگی میں کوئی شخص اچانک
+            اتنا خاص بن جاتا ہے کہ اس کی باتیں،
+            اس کی مسکراہٹ اور اس کی موجودگی
+            دل میں ایک الگ جگہ بنا لیتی ہے۔
+
+            <br><br>
+
+            شاید یہی احساس میری کہانی کا سب سے
+            خوبصورت حصہ ہے۔
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- PHOTOS -->
+
+<section id="photos">
+
+    <h2 class="title">
+        Our Photos 📸
+    </h2>
+
+    <p class="subtitle">
+        Beautiful Memories
+    </p>
+
+    <div class="gallery">
+
+        <div class="photo">
+
+            <img
+                src="photo1.jpg"
+                alt="Memory 1"
+            >
+
+            <div class="caption">
+                ایک خوبصورت یاد ❤️
+            </div>
+
+        </div>
+
+
+        <div class="photo">
+
+            <img
+                src="photo2.jpg"
+                alt="Memory 2"
+            >
+
+            <div class="caption">
+                ایک خاص لمحہ
+            </div>
+
+        </div>
+
+
+        <div class="photo">
+
+            <img
+                src="photo3.jpg"
+                alt="Memory 3"
+            >
+
+            <div class="caption">
+                دل کے قریب یاد
+            </div>
+
+        </div>
+
+
+        <div class="photo">
+
+            <img
+                src="photo4.jpg"
+                alt="Memory 4"
+            >
+
+            <div class="caption">
+                ہمیشہ یاد رہنے والا لمحہ ❤️
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- VIDEOS -->
+
+<section id="videos">
+
+    <h2 class="title">
+        Our Videos 🎥
+    </h2>
+
+    <p class="subtitle">
+        ہماری خاص یادیں
+    </p>
+
+    <div class="videos">
+
+        <div class="video">
+
+            <video controls>
+
+                <source
+                    src="video1.mp4"
+                    type="video/mp4"
+                >
+
+                Your browser does not support video.
+
+            </video>
+
+        </div>
+
+
+        <div class="video">
+
+            <video controls>
+
+                <source
+                    src="video2.mp4"
+                    type="video/mp4"
+                >
+
+                Your browser does not support video.
+
+            </video>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- LETTER -->
+
+<section id="letter">
+
+    <h2 class="title">
+        وریشہ کے نام 💌
+    </h2>
+
+    <p class="subtitle">
+        دل کی ایک بات
+    </p>
+
+    <div class="letter">
+
+        <p>
+
+            <b>
+                السلام علیکم وریشہ، ❤️
+            </b>
+
+            <br><br>
+
+            آج میں آپ سے اپنے دل کی ایک بات کہنا چاہتا ہوں۔
+
+            <br><br>
+
+            آپ میرے لیے صرف ایک نام نہیں ہیں۔
+            آپ کی باتیں، آپ کی مسکراہٹ اور آپ کی موجودگی
+            میرے دل میں ایک خاص جگہ بنا چکی ہے۔
+            وقت کے ساتھ مجھے احساس ہوا کہ میں آپ کو
+            صرف پسند نہیں کرتا، بلکہ میرے دل میں
+            آپ کے لیے ایک بہت خاص احساس پیدا ہو گیا ہے۔
+
+            <br><br>
+
+            میں جانتا ہوں کہ زندگی نے آپ کو کچھ ایسے
+            دکھ بھی دیے ہیں جنہیں شاید الفاظ میں بیان
+            کرنا آسان نہیں۔
+
+            <br><br>
+
+            آپ اپنے والدین کو یاد کرتی ہیں، اور میں آپ
+            کے اس درد کو سمجھنے کی کوشش کرتا ہوں۔
+
+            <br><br>
+
+            میں دل سے دعا کرتا ہوں کہ
+            <b>
+                اللہ تعالیٰ آپ کے والدین کو جنت الفردوس
+                میں اعلیٰ مقام عطا فرمائے اور آپ کو ہمیشہ
+                خوش اور مضبوط رکھے۔ آمین۔ 🤲❤️
+            </b>
+
+            <br><br>
+
+            میں آپ کو دل سے پسند کرتا ہوں۔
+
+            <br>
+
+            میں آپ کی عزت کرتا ہوں۔
+
+            <br>
+
+            اور ہاں… مجھے آپ سے محبت ہے۔ ❤️
+
+            <br><br>
+
+            <b>
+                بس آج دل نے کہا کہ یہ بات کہہ دینی چاہیے…
+                کیونکہ کچھ احساسات خاموش رہیں تو
+                دل میں ہی رہ جاتے ہیں۔
+            </b>
+
+        </p>
+
+
+        <div class="signature">
+            — Mudassar ❤️
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FINAL LOVE -->
+
+<div class="love-final">
+
+    <h2>
+        آخر میں بس اتنا کہنا ہے… ❤️
+    </h2>
+
+    <div class="ilove">
+        I Love You, Waresha ❤️
+    </div>
+
+    <div class="ilove">
+        I Love You, Waresha ❤️
+    </div>
+
+    <div class="ilove">
+        I Love You, Waresha ❤️
+    </div>
+
+</div>
+
+
+<footer>
+
+    <div style="font-size:25px">
+        ❤️
+    </div>
+
+    <p>
+        Mudassar ❤️ Waresha
+    </p>
+
+    <p>
+        Made with beautiful memories
+    </p>
+
+</footer>
+
+</div>
+
+
+<!-- =================================================
+     JAVASCRIPT
+================================================= -->
+
+<script>
+
+/* =====================================
+   PASSWORD
+===================================== */
+
+/*
+   APNA PASSWORD YAHAN CHANGE KAREN
+*/
+
+const correctPassword = "Waresha123";
+
+
+function unlockWebsite(){
+
+    const enteredPassword =
+        document.getElementById("password").value;
+
+    const error =
+        document.getElementById("error");
+
+    if(enteredPassword === correctPassword){
+
+        document.getElementById("lockScreen").style.display="none";
+
+        document.getElementById("intro").style.display="flex";
+
+        error.style.display="none";
+
+    }else{
+
+        error.style.display="block";
+
+        document.getElementById("password").value="";
+
+        document.getElementById("password").focus();
+
+    }
+
+}
+
+
+/* ENTER KEY */
+
+document
+.getElementById("password")
+.addEventListener("keydown",function(event){
+
+    if(event.key==="Enter"){
+
+        unlockWebsite();
+
+    }
+
+});
+
+
+/* INTRO ENTER */
+
+function enterSite(){
+
+    document.getElementById("intro").style.display="none";
+
+    document.getElementById("website").style.display="block";
+
+    window.scrollTo(0,0);
+
+}
+
+
+/* FLOATING HEARTS */
+
+function createHeart(){
+
+    const heart =
+        document.createElement("div");
+
+    heart.className="floating";
+
+    heart.innerHTML="❤️";
+
+    heart.style.left =
+        Math.random()*100+"vw";
+
+    heart.style.fontSize =
+        (12+Math.random()*18)+"px";
+
+    heart.style.animationDuration =
+        (4+Math.random()*4)+"s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(function(){
+
+        heart.remove();
+
+    },8000);
+
+}
+
+setInterval(createHeart,900);
+
+</script>
+
+</body>
+</html>
+```
